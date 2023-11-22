@@ -97,6 +97,14 @@ async def create_severity(accident_severity: AccidentSeverity, db: db_dependency
     db.commit()
 
 
+@app.get("/accidents", status_code=status.HTTP_200_OK)
+async def get_all_accidents(db: db_dependency, skip: int = 0, limit: int = 100):
+    db_accidents = db.query(models.Accidents).offset(skip).limit(limit).all()
+    if db_accidents is None:
+        raise HTTPException(status_code=404, detail="Accidents not found")
+    return db_accidents
+
+
 @app.post("/day_of_week/", status_code=status.HTTP_201_CREATED)
 async def create_day(day: DayOfWeek, db: db_dependency):
     db_day = models.Day_of_Week(**day.dict())
@@ -242,14 +250,6 @@ async def get_all_casualties(db: db_dependency, skip: int = 0, limit: int = 100)
     if db_casulties is None:
         raise HTTPException(status_code=404, detail="Casualties not found")
     return db_casulties
-
-
-@app.get("/accidents", status_code=status.HTTP_200_OK)
-async def get_all_accidents(db: db_dependency, skip: int = 0, limit: int = 100):
-    db_accidents = db.query(models.Accidents).offset(skip).limit(limit).all()
-    if db_accidents is None:
-        raise HTTPException(status_code=404, detail="Accidents not found")
-    return db_accidents
 
 
 @app.get("/vehicles", status_code=status.HTTP_200_OK)

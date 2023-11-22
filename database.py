@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 
-URL_DATABASE = 'mysql+pymysql://root:2023@localhost:3306/powerbi'
+URL_DATABASE = "mysql+pymysql://username:psswd@localhost:port_number/schema_name"
 engine = create_engine(URL_DATABASE)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
