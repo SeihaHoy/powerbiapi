@@ -19,3 +19,6 @@ In order to create different tables in MySQL we need to create different models 
 Finally, in order to route the database to an API we need a routing file that we can see in main.py. In this file, we will have different routing functions which are mostly POST and GET. For the POST function, it is used to insert the data into the database. On the other hand, the GET function will be used to get the data from the database. This will be the routing function that we will use in PowerBI to retrieve all the data.
 Furthermore, some tables have a lot of rows which can be time and memory-consuming whenever we want to retrieve the dataset. For easier access, we decided to use pagination to get the data by some amount each time. With pagination, we can get the data faster and easier.
 
+## Run
+To run use this command
+    uvicorn main:app --reload
